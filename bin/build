@@ -1,0 +1,26 @@
+#!/bin/sh -eu
+
+TEXFILE="$1"
+DVIFILE="${TEXFILE%.tex}.dvi"
+PDFFILE="${TEXFILE%.tex}.pdf"
+
+CHARSET=`nkf -g "$TEXFILE"`
+
+case "$CHARSET" in
+    UTF-8)
+        KANJI="utf-8";;
+    EUC-JP)
+        KANJI="euc-jp";;
+    Shift-JIS)
+        KANJI="sjis";;
+    ISO-2022-JP)
+        KANJI="jis";;
+    *)
+        echo "ERROR: unknown charset: $CHARSET" >&2
+        exit 1
+        ;;
+esac
+
+platex -kanji=$KANJI "$TEXFILE"
+dvipdfmx "$DVIFILE"
+
