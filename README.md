@@ -13,5 +13,5 @@ or
 # Usage
 
     $ ls /path/to/your/pdf/dir
-    $ document.tex
+    document.tex
     $ docker run --rm -v /path/to/your/pdf/dir:/work genkami/latex build document.tex
