@@ -1,8 +1,8 @@
 #!/bin/sh -eu
 
 TEXFILE="$1"
-DVIFILE="${TEXFILE%.tex}.dvi"
-PDFFILE="${TEXFILE%.tex}.pdf"
+BASEFILE="${TEXFILE%.tex}"
+DVIFILE="${BASEFILE}.dvi"
 
 CHARSET=`nkf -g "$TEXFILE"`
 
@@ -21,6 +21,9 @@ case "$CHARSET" in
         ;;
 esac
 
-platex -kanji=$KANJI "$TEXFILE"
+platex -kanji=$KANJI "$BASEFILE"
+pbibtex -kanji=$KANJI "$BASEFILE"
+platex -kanji=$KANJI "$BASEFILE"
+platex -kanji=$KANJI "$BASEFILE"
 dvipdfmx "$DVIFILE"
 
