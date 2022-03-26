@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:focal
 MAINTAINER Genta Kamitani <oftn.mofumofu@gmail.com>
 
 RUN   apt update && \
