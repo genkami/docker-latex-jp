@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu:jammy
 MAINTAINER Genta Kamitani <oftn.mofumofu@gmail.com>
 
 RUN   apt update && \
